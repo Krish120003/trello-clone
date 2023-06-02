@@ -1,13 +1,26 @@
-type Book {
+type Card {
+  id: ID!
   title: String!
-  author: [Author]
 }
 
-type Author {
-  name: String!
-  books: [Book]
+type List {
+  id: ID!
+  title: String!
+  cards: [Card]
+}
+
+type Board {
+  id: ID!
+  title: String!
+  lists: [List]
 }
 
 type Query {
-  books: [Book]
+  boards: [Board]
+}
+
+type Mutation {
+  createBoard(title: String!): Board
+  createList(title: String!, boardId: ID!): List
+  createCard(title: String!, listId: ID!): Card
 }
